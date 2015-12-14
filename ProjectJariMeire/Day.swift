@@ -61,6 +61,25 @@ extension Day{
             }
         }
         
+        func setDescription(description: String) -> String {
+            switch description {
+            case "light rain":
+                return "lichte regen";
+            case "moderate rain":
+                return "af en toe buien";
+            case "heavy intensity rain":
+                return "zware regenval";
+            case "sky is clear":
+                return "heldere hemel";
+            case "broken clouds":
+                return "bewolkt";
+            case "overcast clouds":
+                return "zwaar bewolkt";
+            default:
+                return description;
+            }
+        }
+        
         func setDayName(dt: NSTimeInterval) -> String {
             let date = NSDate(timeIntervalSince1970: dt)
             let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
@@ -77,8 +96,9 @@ extension Day{
         
         let dayName = setDayName(dt)
         let temperature = setTemperature(min, max: max)
+        let weatherDescription = setDescription(description)
         
-        self.init(location: city, name: dayName, temperature: temperature, description: description)
+        self.init(location: city, name: dayName, temperature: temperature, description: weatherDescription)
     }
 }
 
