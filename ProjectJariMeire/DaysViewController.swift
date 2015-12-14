@@ -4,14 +4,11 @@ class DaysViewController: UITableViewController {
     
     var location: String = ""
     var amountOfDays: Int = 7
-    var counter: Int = 0
     var days: [Day] = []
     var currentTask: NSURLSessionTask?
     
     override func viewDidLoad() {
-        counter = 0
         tableView!.delegate = self
-        
         currentTask = Service.sharedService.createFetchTask(location, amountOfDays: amountOfDays) {
             [unowned self] result in switch result {
             case .Success(let days):
@@ -36,8 +33,8 @@ class DaysViewController: UITableViewController {
         return days.count
     }
     
-    func setDayName(name: String, counter: Int) -> String {
-        switch counter {
+    func setDayName(name: String, dayNumber: Int) -> String {
+        switch dayNumber {
         case 0:
             return "Vandaag"
         case 1:
@@ -51,10 +48,10 @@ class DaysViewController: UITableViewController {
         let cellIdentifier = "DayTableViewCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! DayTableViewCell
         let day = days[indexPath.row]
-        cell.nameLabel.text = setDayName(day.name, counter: counter)
+        cell.nameLabel.text = setDayName(day.name, dayNumber: indexPath.row)
         cell.temperatureLabel.text = String(day.temperature) + "°C"
         cell.descriptionLabel.text = day.description
-        counter += 1
+        //cell.backgroundColor = UIColor(patternImage: UIImage(named: day.main)!)
         return cell
     }
     

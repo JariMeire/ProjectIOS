@@ -86,24 +86,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Fm-xR-df2">
-                                <rect key="frame" x="20" y="117" width="560" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Fm-xR-df2">
+                                <rect key="frame" x="380" y="117" width="200" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VBU-cp-6tM">
-                                <rect key="frame" x="20" y="146" width="560" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VBU-cp-6tM">
+                                <rect key="frame" x="380" y="146" width="200" height="21"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="VBU-cp-6tM" firstAttribute="centerX" secondItem="yAJ-vg-41B" secondAttribute="centerX" id="bdW-vp-88k"/>
-                            <constraint firstItem="VBU-cp-6tM" firstAttribute="top" secondItem="8Fm-xR-df2" secondAttribute="bottom" constant="8" id="rGB-7Q-51A"/>
-                            <constraint firstItem="8Fm-xR-df2" firstAttribute="centerX" secondItem="yAJ-vg-41B" secondAttribute="centerX" id="tU6-fO-h3L"/>
+                            <constraint firstItem="VBU-cp-6tM" firstAttribute="top" secondItem="8Fm-xR-df2" secondAttribute="bottom" constant="8" id="CYI-ob-AdI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8Fm-xR-df2" secondAttribute="trailing" id="PSr-Ni-zJQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VBU-cp-6tM" secondAttribute="trailing" id="mVJ-ou-dHB"/>
+                            <constraint firstItem="VBU-cp-6tM" firstAttribute="width" secondItem="8Fm-xR-df2" secondAttribute="width" id="tLe-09-ct4"/>
+                            <constraint firstItem="8Fm-xR-df2" firstAttribute="top" secondItem="Mqy-fp-4xf" secondAttribute="bottom" constant="53" id="uw4-hh-Zbf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="xK4-d8-rc6">
@@ -154,21 +156,32 @@
                                     <constraint firstAttribute="trailing" secondItem="vzI-Sf-MAS" secondAttribute="trailing" id="a0j-18-5me"/>
                                 </constraints>
                             </stackView>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="522-oU-Kqy">
-                                <rect key="frame" x="20" y="150" width="560" height="216"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="OPP-yL-1P2"/>
-                                </connections>
-                            </pickerView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7TW-Nu-XVM">
+                                <rect key="frame" x="140" y="162" width="320" height="237"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aantal dagen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rJS-PI-HUJ">
+                                        <rect key="frame" x="110" y="0.0" width="101" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="522-oU-Kqy">
+                                        <rect key="frame" x="0.0" y="21" width="320" height="216"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="BYZ-38-t0r" id="OPP-yL-1P2"/>
+                                        </connections>
+                                    </pickerView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="522-oU-Kqy" firstAttribute="top" secondItem="8ym-Ez-BHm" secondAttribute="bottom" constant="8" id="DvM-LH-zwL"/>
+                            <constraint firstItem="8ym-Ez-BHm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9hd-UB-Z0x"/>
+                            <constraint firstItem="7TW-Nu-XVM" firstAttribute="top" secondItem="8ym-Ez-BHm" secondAttribute="bottom" constant="20" id="QzH-gI-XAu"/>
                             <constraint firstItem="8ym-Ez-BHm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="SFg-CV-rJ5"/>
-                            <constraint firstItem="522-oU-Kqy" firstAttribute="width" secondItem="8ym-Ez-BHm" secondAttribute="width" id="WxG-f8-ecT"/>
                             <constraint firstItem="8ym-Ez-BHm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="fOF-jA-ugu"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8ym-Ez-BHm" secondAttribute="trailing" id="neG-rI-pAJ"/>
-                            <constraint firstItem="522-oU-Kqy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="zpC-vW-hQI"/>
+                            <constraint firstItem="7TW-Nu-XVM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vnA-7H-fod"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Instellingen" id="PQd-Kr-Nbm">

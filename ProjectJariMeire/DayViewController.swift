@@ -19,6 +19,8 @@ class DayViewController: UIViewController {
             temperatureLabel.text = String(day.temperature) + "°C"
             descriptionLabel.text = day.description
         }
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: day!.main)!)
+        
     }
     
     func setDayName(name: String, counter: Int) -> String {
