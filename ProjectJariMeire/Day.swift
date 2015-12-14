@@ -75,6 +75,10 @@ extension Day{
                 return "bewolkt";
             case "overcast clouds":
                 return "zwaar bewolkt";
+            case "few clouds":
+                return "afwisselend bewolkt";
+            case "scattered clouds":
+                return "af en toe bewolkt";
             default:
                 return description;
             }

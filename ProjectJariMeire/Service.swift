@@ -19,9 +19,9 @@ class Service
         session = NSURLSession(configuration: NSURLSessionConfiguration.ephemeralSessionConfiguration())
     }
     
-    func createFetchTask(locatie: String, completionHandler: Result<[Day]> -> Void) -> NSURLSessionTask {
-        let q = (locatie == "") ? "Gent" : locatie
-        let url = NSURL(string: "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + q + "&mode=json&units=metric&cnt=7&APPID=1915045e7d99dc089dce5278018d0a13")!
+    func createFetchTask(location: String, amountOfDays: Int, completionHandler: Result<[Day]> -> Void) -> NSURLSessionTask {
+        let q = (location == "") ? "Gent" : location
+        let url = NSURL(string: "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + q + "&mode=json&units=metric&cnt=" + String(amountOfDays) + "&APPID=1915045e7d99dc089dce5278018d0a13")!
         return session.dataTaskWithURL(url) {
             data, response, error in
             let completionHandler: Result<[Day]> -> Void = {

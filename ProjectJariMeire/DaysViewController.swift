@@ -2,16 +2,17 @@ import UIKit
 
 class DaysViewController: UITableViewController {
     
-    var locatie: String = ""
+    var location: String = ""
+    var amountOfDays: Int = 7
     var counter: Int = 0
     var days: [Day] = []
     var currentTask: NSURLSessionTask?
     
     override func viewDidLoad() {
-        
+        counter = 0
         tableView!.delegate = self
         
-        currentTask = Service.sharedService.createFetchTask(locatie) {
+        currentTask = Service.sharedService.createFetchTask(location, amountOfDays: amountOfDays) {
             [unowned self] result in switch result {
             case .Success(let days):
                 self.days = days
@@ -59,7 +60,8 @@ class DaysViewController: UITableViewController {
     
     @IBAction func unwindToLocationLabel(sender: UIStoryboardSegue){
         if let sourceViewController = sender.sourceViewController as? InstellingenViewController{
-            locatie = sourceViewController.location!
+            location = sourceViewController.location!
+            amountOfDays = sourceViewController.amountOfDays
             viewDidLoad()
         }
     }
@@ -74,6 +76,10 @@ class DaysViewController: UITableViewController {
                 dayViewController.day = selectedDay
                 dayViewController.position = indexPath.row
             }
+        } else {
+            let navigation = segue.destinationViewController as! UINavigationController
+            let instellingenViewController =  navigation.topViewController as! InstellingenViewController
+            instellingenViewController.amountOfDays = amountOfDays
         }
     }
     
