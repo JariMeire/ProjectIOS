@@ -19,6 +19,14 @@ class DayViewController: UIViewController {
             temperatureLabel.text = String(day.temperature) + "°C"
             descriptionLabel.text = day.description
         }
+        /*UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: day!.main)?.drawAsPatternInRect(self.view.bounds)
+        
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        
+        self.view.backgroundColor = UIColor(patternImage: image)*/
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: day!.main)!)
         
     }

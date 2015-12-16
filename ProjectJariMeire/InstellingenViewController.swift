@@ -24,6 +24,8 @@ class InstellingenViewController: UIViewController, UITextFieldDelegate, UINavig
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if saveButton === sender {
             location = locationTextField.text ?? ""
+            let defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setObject(location, forKey: "location")
         }
     }
     

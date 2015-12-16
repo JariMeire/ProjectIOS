@@ -15,7 +15,7 @@ class Day{
         self.description = description
     }
 }
-
+var teller: Int = 0
 extension Day{
     convenience init(json: NSDictionary, city: String) throws {
         guard let dt = json["dt"] as? NSTimeInterval else{
@@ -108,6 +108,7 @@ extension Day{
         let weatherDescription = setDescription(description)
         
         self.init(location: city, name: dayName, temperature: temperature, main: main, description: weatherDescription)
+        //teller += 1
     }
 }
 

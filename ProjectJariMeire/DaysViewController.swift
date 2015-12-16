@@ -8,6 +8,8 @@ class DaysViewController: UITableViewController {
     var currentTask: NSURLSessionTask?
     
     override func viewDidLoad() {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        location = defaults.stringForKey("location")!
         tableView!.delegate = self
         currentTask = Service.sharedService.createFetchTask(location, amountOfDays: amountOfDays) {
             [unowned self] result in switch result {
