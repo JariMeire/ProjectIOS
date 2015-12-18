@@ -6,13 +6,15 @@ class Day{
     let temperature: Int
     let main: String
     let description: String
+    let icon: String
     
-    init(location: String, name: String, temperature: Int, main: String, description: String){
+    init(location: String, name: String, temperature: Int, main: String, description: String, icon: String){
         self.location = location
         self.name = name
         self.temperature = temperature
         self.main = main
         self.description = description
+        self.icon = icon
     }
 }
 var teller: Int = 0
@@ -42,6 +44,10 @@ extension Day{
         guard let main = weatherdata["main"] as? String else {
             throw Service.Error.MissingJsonProperty(name: "main")
         }
+        guard let icon = weatherdata["icon"] as? String else {
+            throw Service.Error.MissingJsonProperty(name: "icon")
+        }
+        
         
         //Hier kan je nu zogezegd met de gegevens doen wat je maar wilt
         
@@ -107,7 +113,7 @@ extension Day{
         let temperature = setTemperature(min, max: max)
         let weatherDescription = setDescription(description)
         
-        self.init(location: city, name: dayName, temperature: temperature, main: main, description: weatherDescription)
+        self.init(location: city, name: dayName, temperature: temperature, main: main, description: weatherDescription, icon: icon)
         //teller += 1
     }
 }

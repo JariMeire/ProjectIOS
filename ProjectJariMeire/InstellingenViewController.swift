@@ -6,6 +6,7 @@ class InstellingenViewController: UIViewController, UITextFieldDelegate, UINavig
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var amountOfDaysPicker: UIPickerView!
     
+    let defaults = NSUserDefaults.standardUserDefaults()
     var location: String?
     var amountOfDays = 0
     var amountOfDaysArray = [1, 2, 3, 4, 5, 6, 7]
@@ -24,8 +25,8 @@ class InstellingenViewController: UIViewController, UITextFieldDelegate, UINavig
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if saveButton === sender {
             location = locationTextField.text ?? ""
-            let defaults = NSUserDefaults.standardUserDefaults()
             defaults.setObject(location, forKey: "location")
+            defaults.setInteger(amountOfDays, forKey: "amountOfDays")
         }
     }
     

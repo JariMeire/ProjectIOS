@@ -12,7 +12,11 @@ class DaysViewController: UITableViewController {
         if defaults.stringForKey("location") != nil {
             location = defaults.stringForKey("location")!
         }
+        if defaults.integerForKey("amountOfDays") != 0 {
+            amountOfDays = defaults.integerForKey("amountOfDays")
+        }
         tableView!.delegate = self
+        tableView.backgroundView = UIImageView(image: UIImage(named: "OverviewBackground"))
         currentTask = Service.sharedService.createFetchTask(location, amountOfDays: amountOfDays) {
             [unowned self] result in switch result {
             case .Success(let days):
@@ -54,8 +58,8 @@ class DaysViewController: UITableViewController {
         let day = days[indexPath.row]
         cell.nameLabel.text = setDayName(day.name, dayNumber: indexPath.row)
         cell.temperatureLabel.text = String(day.temperature) + "°C"
-        cell.descriptionLabel.text = day.description
-        //cell.backgroundColor = UIColor(patternImage: UIImage(named: day.main)!)
+        cell.icon.image = UIImage(named: day.icon)
+        cell.backgroundColor = UIColor.clearColor()
         return cell
     }
     
