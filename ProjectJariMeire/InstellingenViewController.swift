@@ -20,11 +20,13 @@ class InstellingenViewController: UIViewController, UITextFieldDelegate, UINavig
         amountOfDaysPicker.delegate = self
         amountOfDaysPicker.dataSource = self
         amountOfDaysPicker.selectRow(amountOfDays - 1, inComponent: 0, animated: true)
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "OverviewBackground")!)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if saveButton === sender {
-            location = locationTextField.text ?? ""
+            let input = locationTextField.text ?? ""
+            location = input.stringByReplacingOccurrencesOfString(" ", withString: "")
             defaults.setObject(location, forKey: "location")
             defaults.setInteger(amountOfDays, forKey: "amountOfDays")
         }

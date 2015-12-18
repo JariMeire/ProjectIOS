@@ -44,7 +44,7 @@ extension Day{
         guard let main = weatherdata["main"] as? String else {
             throw Service.Error.MissingJsonProperty(name: "main")
         }
-        guard let icon = weatherdata["icon"] as? String else {
+        guard var icon = weatherdata["icon"] as? String else {
             throw Service.Error.MissingJsonProperty(name: "icon")
         }
         
@@ -90,6 +90,10 @@ extension Day{
                 return "afwisselend bewolkt";
             case "scattered clouds":
                 return "af en toe bewolkt";
+            case "light snow":
+                return "lichte sneeuwval";
+            case "sneeuw":
+                return "sneeuwbuien";
             default:
                 return description;
             }
@@ -112,8 +116,9 @@ extension Day{
         let dayName = setDayName(dt)
         let temperature = setTemperature(min, max: max)
         let weatherDescription = setDescription(description)
+        let iconGeneral = String(icon.characters.dropLast())
         
-        self.init(location: city, name: dayName, temperature: temperature, main: main, description: weatherDescription, icon: icon)
+        self.init(location: city, name: dayName, temperature: temperature, main: main, description: weatherDescription, icon: iconGeneral)
         //teller += 1
     }
 }
