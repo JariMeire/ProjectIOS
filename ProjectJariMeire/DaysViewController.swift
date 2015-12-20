@@ -4,25 +4,27 @@ class DaysViewController: UITableViewController {
     
     let defaults = NSUserDefaults.standardUserDefaults()
     var celsius: Bool = true
-    var location: String = ""
+    var city: String = ""
     var amountOfDays: Int = 7
     var days: [Day] = []
     var currentTask: NSURLSessionTask?
     
     override func viewDidLoad() {
-        if defaults.stringForKey("location") != nil {
-            location = defaults.stringForKey("location")!
+        if defaults.stringForKey("city") != nil {
+            city = defaults.stringForKey("city")!
         }
         if defaults.integerForKey("amountOfDays") != 0 {
             amountOfDays = defaults.integerForKey("amountOfDays")
         }
         tableView!.delegate = self
         tableView.backgroundView = UIImageView(image: UIImage(named: "OverviewBackground"))
-        currentTask = Service.sharedService.createFetchTask(location, amountOfDays: amountOfDays) {
+        currentTask = Service.sharedService.createFetchTask(city, amountOfDays: amountOfDays) {
             [unowned self] result in switch result {
             case .Success(let days):
                 self.days = days
-                self.title = days[0].location
+                self.title = days[0].city
+                self.defaults.setDouble(days[0].location.latitude, forKey: "latitude")
+                self.defaults.setDouble(days[0].location.longitude, forKey: "longitude")
                 self.tableView.reloadData()
                 /*self.errorView.hidden = true*/
             case .Failure(let error):
@@ -75,7 +77,7 @@ class DaysViewController: UITableViewController {
     
     @IBAction func unwindToLocationLabel(sender: UIStoryboardSegue){
         if let sourceViewController = sender.sourceViewController as? SettingsController {
-            location = sourceViewController.location!
+            city = sourceViewController.city!
             amountOfDays = sourceViewController.amountOfDays
             viewDidLoad()
         }

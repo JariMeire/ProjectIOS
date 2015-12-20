@@ -167,12 +167,31 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="200" id="HVJ-06-Wzy">
+                                        <rect key="frame" x="0.0" y="139" width="600" height="200"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HVJ-06-Wzy" id="zMP-z7-NhJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="199"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="eLt-p2-qHR">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="199"/>
+                                                </mapView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="eLt-p2-qHR" firstAttribute="centerY" secondItem="zMP-z7-NhJ" secondAttribute="centerY" id="8p0-Mp-frt"/>
+                                                <constraint firstItem="eLt-p2-qHR" firstAttribute="centerX" secondItem="zMP-z7-NhJ" secondAttribute="centerX" id="NHt-bW-9HN"/>
+                                                <constraint firstItem="eLt-p2-qHR" firstAttribute="height" secondItem="zMP-z7-NhJ" secondAttribute="height" id="c9e-My-8sd"/>
+                                                <constraint firstItem="eLt-p2-qHR" firstAttribute="width" secondItem="zMP-z7-NhJ" secondAttribute="width" id="kNO-f2-Tfd"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Aantal dagen" id="A0i-zE-sM0">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="200" id="f7b-FH-qEF">
-                                        <rect key="frame" x="0.0" y="167" width="600" height="200"/>
+                                        <rect key="frame" x="0.0" y="367" width="600" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f7b-FH-qEF" id="CQc-W6-IL0">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="199"/>
@@ -195,7 +214,7 @@
                             <tableViewSection headerTitle="Weergave temperatuur" id="gAg-Qv-ALz">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="bre-HB-SnK">
-                                        <rect key="frame" x="0.0" y="395" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="595" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bre-HB-SnK" id="B4j-de-s9y">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -246,6 +265,7 @@
                     <connections>
                         <outlet property="amountOfDaysPicker" destination="522-oU-Kqy" id="Khn-iZ-ioa"/>
                         <outlet property="locationTextField" destination="vzI-Sf-MAS" id="BUI-nv-X3l"/>
+                        <outlet property="mapView" destination="eLt-p2-qHR" id="Qfl-Z6-OtA"/>
                         <outlet property="saveButton" destination="PYN-vD-tZC" id="qdU-x0-6vI"/>
                         <outlet property="temperatureSwitch" destination="Ud3-o9-wRo" id="2aA-fy-p0e"/>
                     </connections>

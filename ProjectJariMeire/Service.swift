@@ -55,11 +55,15 @@ class Service
                     completionHandler(.Failure(.MissingJsonProperty(name: "name")))
                     return
                 }
+                guard let coord = city["coord"] as? NSDictionary else {
+                    completionHandler(.Failure(.MissingJsonProperty(name: "coord")))
+                    return
+                }
                 guard let jsonDays = json["list"] as? [NSDictionary] else {
                     completionHandler(.Failure(.MissingJsonProperty(name: "list")))
                     return
                 }
-                let days = try jsonDays.map { try Day(json : $0, city: name) }
+                let days = try jsonDays.map { try Day(json : $0, city: name, coord: coord) }
                 completionHandler(.Success(days))
             } catch let error as NSError {
                 completionHandler(.Failure(.InvalidJsonData(message: error.description)))

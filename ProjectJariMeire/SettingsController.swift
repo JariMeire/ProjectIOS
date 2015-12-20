@@ -1,15 +1,17 @@
 import UIKit
+import MapKit
 
 class SettingsController: UITableViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var amountOfDaysPicker: UIPickerView!
     @IBOutlet weak var temperatureSwitch: UISwitch!
-    
+    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    
     let defaults = NSUserDefaults.standardUserDefaults()
     var celsius = true
-    var location: String?
+    var city: String?
     var amountOfDays = 0
     var amountOfDaysArray = [1, 2, 3, 4, 5, 6, 7]
     
@@ -25,13 +27,23 @@ class SettingsController: UITableViewController, UITextFieldDelegate, UINavigati
         if defaults.boolForKey("celsius") == false {
             temperatureSwitch.on = defaults.boolForKey("celsius")
         }
+        setMapView()
+    }
+    
+    func setMapView() -> Void {
+        let center = CLLocationCoordinate2D(latitude: defaults.doubleForKey("latitude"), longitude: defaults.doubleForKey("longitude"))
+        let visibleRegion = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        mapView.region = visibleRegion
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = center
+        mapView.addAnnotation(annotation)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if saveButton === sender {
             let input = locationTextField.text ?? ""
-            location = input.stringByReplacingOccurrencesOfString(" ", withString: "")
-            defaults.setObject(location, forKey: "location")
+            city = input.stringByReplacingOccurrencesOfString(" ", withString: "")
+            defaults.setObject(city, forKey: "city")
             defaults.setInteger(amountOfDays, forKey: "amountOfDays")
             defaults.setBool(celsius, forKey: "celsius")
         }

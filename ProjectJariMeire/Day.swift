@@ -1,25 +1,27 @@
 import Foundation
 
 class Day{
-    let location: String
+    let city: String
     let name: String
     let temperature: Int
     let main: String
     let description: String
     let icon: String
+    let location: Location
     
-    init(location: String, name: String, temperature: Int, main: String, description: String, icon: String){
-        self.location = location
+    init(city: String, name: String, temperature: Int, main: String, description: String, icon: String, location: Location){
+        self.city = city
         self.name = name
         self.temperature = temperature
         self.main = main
         self.description = description
         self.icon = icon
+        self.location = location
     }
 }
 var teller: Int = 0
 extension Day{
-    convenience init(json: NSDictionary, city: String) throws {
+    convenience init(json: NSDictionary, city: String, coord: NSDictionary) throws {
         guard let dt = json["dt"] as? NSTimeInterval else{
             throw Service.Error.MissingJsonProperty(name: "dt")
         }
@@ -47,7 +49,12 @@ extension Day{
         guard var icon = weatherdata["icon"] as? String else {
             throw Service.Error.MissingJsonProperty(name: "icon")
         }
-        
+        guard var lon = coord["lon"] as? Double else {
+            throw Service.Error.MissingJsonProperty(name: "lon")
+        }
+        guard var lat = coord["lat"] as? Double else {
+            throw Service.Error.MissingJsonProperty(name: "lat")
+        }
         
         //Hier kan je nu zogezegd met de gegevens doen wat je maar wilt
         
@@ -117,8 +124,9 @@ extension Day{
         let temperature = setTemperature(min, max: max)
         let weatherDescription = setDescription(description)
         let iconGeneral = String(icon.characters.dropLast())
+        let location = Location(latitude: lat, longitude: lon)
         
-        self.init(location: city, name: dayName, temperature: temperature, main: main, description: weatherDescription, icon: iconGeneral)
+        self.init(city: city, name: dayName, temperature: temperature, main: main, description: weatherDescription, icon: iconGeneral, location: location)
         //teller += 1
     }
 }
