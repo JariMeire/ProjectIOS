@@ -57,12 +57,15 @@ class InstellingenViewController: UIViewController, UITextFieldDelegate, UINavig
     
     
     //PICKERVIEW: aantal dagen
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let amount = amountOfDaysArray[row]
+        let text: String
         if amount == 1 {
-            return String(amount) + " dag"
+            text =  String(amount) + " dag"
+        } else {
+            text = String(amount) + " dagen"
         }
-        return String(amount) + " dagen"
+        return NSAttributedString(string: text, attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
