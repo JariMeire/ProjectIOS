@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0F283D8C1C05DB950015F0AD /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F283D8B1C05DB950015F0AD /* Day.swift */; settings = {ASSET_TAGS = (); }; };
-		0F2C997F1C130D2900BB70D0 /* InstellingenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C997E1C130D2900BB70D0 /* InstellingenViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		0F2C99811C17809000BB70D0 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C99801C17809000BB70D0 /* Result.swift */; settings = {ASSET_TAGS = (); }; };
 		0F2C99831C1780A300BB70D0 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C99821C1780A300BB70D0 /* Service.swift */; settings = {ASSET_TAGS = (); }; };
 		0F5123CC1C0EE7960015BD47 /* DayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5123CB1C0EE7960015BD47 /* DayViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -18,6 +17,7 @@
 		0FC47D3E1BCE9FC000DB4C07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FC47D3C1BCE9FC000DB4C07 /* Main.storyboard */; };
 		0FC47D401BCE9FC000DB4C07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FC47D3F1BCE9FC000DB4C07 /* Assets.xcassets */; };
 		0FC47D431BCE9FC000DB4C07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FC47D411BCE9FC000DB4C07 /* LaunchScreen.storyboard */; };
+		0FC487601C27204600E4A115 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC4875F1C27204600E4A115 /* SettingsController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +39,6 @@
 
 /* Begin PBXFileReference section */
 		0F283D8B1C05DB950015F0AD /* Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
-		0F2C997E1C130D2900BB70D0 /* InstellingenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstellingenViewController.swift; sourceTree = "<group>"; };
 		0F2C99801C17809000BB70D0 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		0F2C99821C1780A300BB70D0 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		0F5123CB1C0EE7960015BD47 /* DayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +52,7 @@
 		0FC47D441BCE9FC000DB4C07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0FC47D491BCE9FC100DB4C07 /* ProjectJariMeireTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProjectJariMeireTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FC47D541BCE9FC100DB4C07 /* ProjectJariMeireUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProjectJariMeireUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FC4875F1C27204600E4A115 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +93,7 @@
 			children = (
 				0F5123CB1C0EE7960015BD47 /* DayViewController.swift */,
 				0F5123CD1C0EF7E60015BD47 /* DaysViewController.swift */,
-				0F2C997E1C130D2900BB70D0 /* InstellingenViewController.swift */,
+				0FC4875F1C27204600E4A115 /* SettingsController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -279,10 +279,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FC487601C27204600E4A115 /* SettingsController.swift in Sources */,
 				0FC47D391BCE9FC000DB4C07 /* AppDelegate.swift in Sources */,
 				0F2C99831C1780A300BB70D0 /* Service.swift in Sources */,
 				0F5123CC1C0EE7960015BD47 /* DayViewController.swift in Sources */,
-				0F2C997F1C130D2900BB70D0 /* InstellingenViewController.swift in Sources */,
 				0F5123D11C0F08850015BD47 /* DayTableViewCell.swift in Sources */,
 				0F2C99811C17809000BB70D0 /* Result.swift in Sources */,
 				0F283D8C1C05DB950015F0AD /* Day.swift in Sources */,

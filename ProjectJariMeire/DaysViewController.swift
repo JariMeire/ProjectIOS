@@ -74,7 +74,7 @@ class DaysViewController: UITableViewController {
     }
     
     @IBAction func unwindToLocationLabel(sender: UIStoryboardSegue){
-        if let sourceViewController = sender.sourceViewController as? InstellingenViewController{
+        if let sourceViewController = sender.sourceViewController as? SettingsController {
             location = sourceViewController.location!
             amountOfDays = sourceViewController.amountOfDays
             viewDidLoad()
@@ -93,8 +93,8 @@ class DaysViewController: UITableViewController {
             }
         } else {
             let navigation = segue.destinationViewController as! UINavigationController
-            let instellingenViewController =  navigation.topViewController as! InstellingenViewController
-            instellingenViewController.amountOfDays = amountOfDays
+            let settingsViewController =  navigation.topViewController as! SettingsController
+            settingsViewController.amountOfDays = amountOfDays
         }
     }
     
