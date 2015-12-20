@@ -5,8 +5,10 @@ class InstellingenViewController: UIViewController, UITextFieldDelegate, UINavig
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var amountOfDaysPicker: UIPickerView!
+    @IBOutlet weak var temperatureSwitch: UISwitch!
     
     let defaults = NSUserDefaults.standardUserDefaults()
+    var celsius = true
     var location: String?
     var amountOfDays = 0
     var amountOfDaysArray = [1, 2, 3, 4, 5, 6, 7]
@@ -20,6 +22,9 @@ class InstellingenViewController: UIViewController, UITextFieldDelegate, UINavig
         amountOfDaysPicker.delegate = self
         amountOfDaysPicker.dataSource = self
         amountOfDaysPicker.selectRow(amountOfDays - 1, inComponent: 0, animated: true)
+        if defaults.boolForKey("celsius") == false {
+            temperatureSwitch.on = defaults.boolForKey("celsius")
+        }
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "OverviewBackground")!)
     }
     
@@ -29,7 +34,17 @@ class InstellingenViewController: UIViewController, UITextFieldDelegate, UINavig
             location = input.stringByReplacingOccurrencesOfString(" ", withString: "")
             defaults.setObject(location, forKey: "location")
             defaults.setInteger(amountOfDays, forKey: "amountOfDays")
+            defaults.setBool(celsius, forKey: "celsius")
         }
+    }
+    
+    @IBAction func switchPressed(sender: AnyObject) {
+        if temperatureSwitch.on {
+            celsius = true
+        } else {
+            celsius = false
+        }
+        saveButton.enabled = true
     }
     
     @IBAction func cancel(sender: UIBarButtonItem) {

@@ -3,6 +3,7 @@ import UIKit
 class DaysViewController: UITableViewController {
     
     let defaults = NSUserDefaults.standardUserDefaults()
+    var celsius: Bool = true
     var location: String = ""
     var amountOfDays: Int = 7
     var days: [Day] = []
@@ -57,10 +58,19 @@ class DaysViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! DayTableViewCell
         let day = days[indexPath.row]
         cell.nameLabel.text = setDayName(day.name, dayNumber: indexPath.row)
-        cell.temperatureLabel.text = String(day.temperature) + "°C"
+        setTemperatureLabel(day.temperature, cell: cell)
         cell.icon.image = UIImage(named: day.icon)
         cell.backgroundColor = UIColor.clearColor()
         return cell
+    }
+    
+    func setTemperatureLabel(temperature: Int, cell: DayTableViewCell) -> Void {
+        if defaults.boolForKey("celsius") == true {
+            cell.temperatureLabel.text = String(temperature) + "°C"
+        } else {
+            let fahrenheit = Int((Double(temperature) * 1.8) + 32)
+            cell.temperatureLabel.text = String(fahrenheit) + "°F"
+        }
     }
     
     @IBAction func unwindToLocationLabel(sender: UIStoryboardSegue){

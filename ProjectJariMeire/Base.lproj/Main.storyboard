@@ -174,14 +174,22 @@
                                     <constraint firstAttribute="trailing" secondItem="vzI-Sf-MAS" secondAttribute="trailing" id="a0j-18-5me"/>
                                 </constraints>
                             </stackView>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ud3-o9-wRo">
+                                <rect key="frame" x="276" y="407" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchPressed:" destination="BYZ-38-t0r" eventType="valueChanged" id="dJn-U4-6G6"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="8ym-Ez-BHm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9hd-UB-Z0x"/>
+                            <constraint firstItem="Ud3-o9-wRo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PvM-q3-qtX"/>
                             <constraint firstItem="7TW-Nu-XVM" firstAttribute="top" secondItem="8ym-Ez-BHm" secondAttribute="bottom" constant="20" id="QzH-gI-XAu"/>
                             <constraint firstItem="8ym-Ez-BHm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="SFg-CV-rJ5"/>
                             <constraint firstItem="8ym-Ez-BHm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="fOF-jA-ugu"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8ym-Ez-BHm" secondAttribute="trailing" id="neG-rI-pAJ"/>
+                            <constraint firstItem="Ud3-o9-wRo" firstAttribute="top" secondItem="522-oU-Kqy" secondAttribute="bottom" constant="8" id="tXA-m9-K3K"/>
                             <constraint firstItem="7TW-Nu-XVM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vnA-7H-fod"/>
                         </constraints>
                     </view>
@@ -201,6 +209,7 @@
                         <outlet property="amountOfDaysPicker" destination="522-oU-Kqy" id="cjd-KE-vz3"/>
                         <outlet property="locationTextField" destination="vzI-Sf-MAS" id="PpL-hg-8hy"/>
                         <outlet property="saveButton" destination="es4-Sx-Yi5" id="XIl-av-b5J"/>
+                        <outlet property="temperatureSwitch" destination="Ud3-o9-wRo" id="xE4-FK-WDF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
