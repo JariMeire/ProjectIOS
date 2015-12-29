@@ -26,11 +26,8 @@ class DaysViewController: UITableViewController {
                 self.defaults.setDouble(days[0].location.latitude, forKey: "latitude")
                 self.defaults.setDouble(days[0].location.longitude, forKey: "longitude")
                 self.tableView.reloadData()
-                /*self.errorView.hidden = true*/
             case .Failure(let error):
                 print(error)
-                /*self.errorLabel.text = "\(error)"
-                self.errorView.hidden = false*/
             }
         }
         currentTask!.resume()
@@ -44,17 +41,7 @@ class DaysViewController: UITableViewController {
         return days.count
     }
     
-    func setDayName(name: String, dayNumber: Int) -> String {
-        switch dayNumber {
-        case 0:
-            return "Vandaag"
-        case 1:
-            return "Morgen"
-        default:
-            return name
-        }
-    }
-    
+    //tableview opvullen
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "DayTableViewCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! DayTableViewCell
@@ -66,6 +53,18 @@ class DaysViewController: UITableViewController {
         return cell
     }
     
+    func setDayName(name: String, dayNumber: Int) -> String {
+        switch dayNumber {
+        case 0:
+            return "Vandaag"
+        case 1:
+            return "Morgen"
+        default:
+            return name
+        }
+    }
+    
+    //celsius of fahrenheit instellen adhv instelling user
     func setTemperatureLabel(temperature: Int, cell: DayTableViewCell) -> Void {
         if defaults.boolForKey("celsius") == true {
             cell.temperatureLabel.text = String(temperature) + "°C"
@@ -75,6 +74,7 @@ class DaysViewController: UITableViewController {
         }
     }
     
+    //waarden nodig om data op te halen die de user heeft ingesteld bij de instellingen
     @IBAction func unwindToLocationLabel(sender: UIStoryboardSegue){
         if let sourceViewController = sender.sourceViewController as? SettingsController {
             city = sourceViewController.city!

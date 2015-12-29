@@ -16,6 +16,7 @@ class SettingsController: UITableViewController, UITextFieldDelegate, UINavigati
     var amountOfDaysArray = [1, 2, 3, 4, 5, 6, 7]
     var locationsArray = [""]
     var lastUsed = false
+    var switchPressed = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,7 @@ class SettingsController: UITableViewController, UITextFieldDelegate, UINavigati
         setMapView()
     }
     
+    //de locatie op kaart weergeven
     func setMapView() -> Void {
         let center = CLLocationCoordinate2D(latitude: defaults.doubleForKey("latitude"), longitude: defaults.doubleForKey("longitude"))
         let visibleRegion = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
@@ -47,23 +49,27 @@ class SettingsController: UITableViewController, UITextFieldDelegate, UINavigati
         mapView.addAnnotation(annotation)
     }
     
-    
+    //overgang, controle of opslaan werd aangeklikt
+    //ingevulde of aangepaste waarden opslaan
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if saveButton === sender {
             if lastUsed == false {
                 if locationTextField.text != "" {
-                    city = locationTextField.text!.stringByReplacingOccurrencesOfString(" ", withString: "")
+                    city = locationTextField.text!
                 }
             }
             if !locationsArray.contains(city!) && city != "" {
                 appendToLocationArray()
             }
             defaults.setObject(city, forKey: "city")
+            if(switchPressed == true){
+                defaults.setBool(celsius, forKey: "celsius")
+            }
             defaults.setInteger(amountOfDays, forKey: "amountOfDays")
-            defaults.setBool(celsius, forKey: "celsius")
         }
     }
     
+    //de 5 laatst gebruikte locaties worden opgeslagen
     func appendToLocationArray() -> Void {
         if locationsArray.count <= 4 {
             locationsArray.append(city!)
@@ -74,6 +80,7 @@ class SettingsController: UITableViewController, UITextFieldDelegate, UINavigati
         defaults.setObject(locationsArray, forKey: "lastLocations")
     }
     
+    //celsius of fahrenheit
     @IBAction func switchPressed(sender: AnyObject) {
         if temperatureSwitch.on {
             celsius = true
@@ -81,12 +88,15 @@ class SettingsController: UITableViewController, UITextFieldDelegate, UINavigati
             celsius = false
         }
         saveButton.enabled = true
+        switchPressed = true
     }
     
+    //annuleer
     @IBAction func cancel(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    //user moet op enter klikken
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -121,6 +131,7 @@ class SettingsController: UITableViewController, UITextFieldDelegate, UINavigati
         }
     }
     
+    //pickerview met tag 1 zijn laatst gebruikte locaties
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if(pickerView.tag == 1){
             return locationsArray.count
@@ -134,6 +145,7 @@ class SettingsController: UITableViewController, UITextFieldDelegate, UINavigati
         return 1
     }
     
+    //pickerviews opvullen/ tag 2 = amountofdayspickerview
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if(pickerView.tag == 2) {
             amountOfDays = row + 1

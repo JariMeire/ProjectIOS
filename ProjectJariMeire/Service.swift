@@ -20,8 +20,11 @@ class Service
     }
     
     func createFetchTask(location: String, amountOfDays: Int, completionHandler: Result<[Day]> -> Void) -> NSURLSessionTask {
+        //indien leeg --> gent = standaardlocatie
         let q = (location == "") ? "Gent" : location
-        let url = NSURL(string: "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + q + "&mode=json&units=metric&cnt=" + String(amountOfDays) + "&APPID=1915045e7d99dc089dce5278018d0a13")!
+        //url instellen, indien string spaties bevat, deze weghalen
+        let url = NSURL(string: "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + q.stringByReplacingOccurrencesOfString(" ", withString: "")
+ + "&mode=json&units=metric&cnt=" + String(amountOfDays) + "&APPID=1915045e7d99dc089dce5278018d0a13")!
         return session.dataTaskWithURL(url) {
             data, response, error in
             let completionHandler: Result<[Day]> -> Void = {
