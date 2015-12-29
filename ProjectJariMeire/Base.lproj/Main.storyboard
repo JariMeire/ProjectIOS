@@ -153,7 +153,7 @@
             <objects>
                 <tableViewController id="FfG-cR-4u8" customClass="SettingsController" customModule="ProjectJariMeire" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Chp-Yb-lLm">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -166,17 +166,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="46"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Geef uw locatie of postcode in" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vzI-Sf-MAS">
-                                                    <rect key="frame" x="174" y="8" width="418" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Locatie wijzigen:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5b-8F-VjW">
-                                                    <rect key="frame" x="17" y="8" width="149" height="30"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Locatie:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5b-8F-VjW">
+                                                    <rect key="frame" x="17" y="8" width="72" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Locatie of postcode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vzI-Sf-MAS">
+                                                    <rect key="frame" x="174" y="8" width="418" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="vzI-Sf-MAS" firstAttribute="leading" secondItem="J1X-AR-hcF" secondAttribute="leadingMargin" constant="166" id="11E-8S-vwt"/>
@@ -209,18 +209,51 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="280" id="cc7-5n-d8K">
+                                        <rect key="frame" x="0.0" y="339" width="600" height="280"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cc7-5n-d8K" id="w8q-2P-3K8">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="279"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Laatst gebruikte locaties:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ISg-8K-eND">
+                                                    <rect key="frame" x="204" y="16" width="193" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <pickerView tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LOU-rP-D5o">
+                                                    <rect key="frame" x="141" y="55" width="319" height="216"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="319" id="KkK-jL-9gW"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="FfG-cR-4u8" id="cf6-WI-hZL"/>
+                                                        <outlet property="delegate" destination="FfG-cR-4u8" id="VkA-KW-0NM"/>
+                                                    </connections>
+                                                </pickerView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="LOU-rP-D5o" secondAttribute="bottom" id="DNB-eg-F8e"/>
+                                                <constraint firstItem="LOU-rP-D5o" firstAttribute="centerX" secondItem="w8q-2P-3K8" secondAttribute="centerX" id="GW9-cb-JJx"/>
+                                                <constraint firstItem="LOU-rP-D5o" firstAttribute="centerX" secondItem="w8q-2P-3K8" secondAttribute="centerX" id="Iaf-zO-gDk"/>
+                                                <constraint firstItem="ISg-8K-eND" firstAttribute="centerX" secondItem="w8q-2P-3K8" secondAttribute="centerX" id="TNW-G8-hEE"/>
+                                                <constraint firstItem="LOU-rP-D5o" firstAttribute="centerX" secondItem="w8q-2P-3K8" secondAttribute="centerX" id="XsG-Me-xBD"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Aantal dagen" id="A0i-zE-sM0">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="200" id="f7b-FH-qEF">
-                                        <rect key="frame" x="0.0" y="367" width="600" height="200"/>
+                                        <rect key="frame" x="0.0" y="647" width="600" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f7b-FH-qEF" id="CQc-W6-IL0">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="199"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="522-oU-Kqy">
+                                                <pickerView tag="2" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="522-oU-Kqy">
                                                     <rect key="frame" x="141" y="4" width="319" height="191"/>
                                                 </pickerView>
                                             </subviews>
@@ -237,7 +270,7 @@
                             <tableViewSection headerTitle="Weergave temperatuur" id="gAg-Qv-ALz">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="bre-HB-SnK">
-                                        <rect key="frame" x="0.0" y="595" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="875" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bre-HB-SnK" id="B4j-de-s9y">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -285,9 +318,12 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="900"/>
                     <connections>
                         <outlet property="amountOfDaysPicker" destination="522-oU-Kqy" id="Khn-iZ-ioa"/>
                         <outlet property="locationTextField" destination="vzI-Sf-MAS" id="BUI-nv-X3l"/>
+                        <outlet property="locationsPicker" destination="LOU-rP-D5o" id="e7i-ae-57e"/>
                         <outlet property="mapView" destination="eLt-p2-qHR" id="Qfl-Z6-OtA"/>
                         <outlet property="saveButton" destination="PYN-vD-tZC" id="qdU-x0-6vI"/>
                         <outlet property="temperatureSwitch" destination="Ud3-o9-wRo" id="2aA-fy-p0e"/>

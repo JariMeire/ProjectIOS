@@ -99,20 +99,4 @@ class DaysViewController: UITableViewController {
             settingsViewController.amountOfDays = amountOfDays
         }
     }
-    
-    /*func loadTestData(){
-    let name1 = "Vandaag"
-    let temperatuur1 = "10°C"
-    let description1 = "licht bewolkt"
-    
-    let name2 = "Morgen"
-    let temperatuur2 = "8°C"
-    let description2 = "af en toe buien"
-    
-    let day1 = Day(name: name1, temperature: temperatuur1, description: description1)
-    let day2 = Day(name: name2, temperature: temperatuur2, description: description2)
-    
-    days += [day1, day2]
-    
-    }*/
 }

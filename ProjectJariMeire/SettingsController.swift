@@ -8,25 +8,33 @@ class SettingsController: UITableViewController, UITextFieldDelegate, UINavigati
     @IBOutlet weak var temperatureSwitch: UISwitch!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
-    
+    @IBOutlet weak var locationsPicker: UIPickerView!
     let defaults = NSUserDefaults.standardUserDefaults()
     var celsius = true
     var city: String?
     var amountOfDays = 0
     var amountOfDaysArray = [1, 2, 3, 4, 5, 6, 7]
+    var locationsArray = [""]
+    var lastUsed = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         locationTextField.delegate = self
         checkValidLocationName()
-        
         amountOfDaysPicker.delegate = self
         amountOfDaysPicker.dataSource = self
         amountOfDaysPicker.selectRow(amountOfDays - 1, inComponent: 0, animated: true)
         if defaults.boolForKey("celsius") == false {
             temperatureSwitch.on = defaults.boolForKey("celsius")
         }
+        if defaults.objectForKey("lastLocations") != nil {
+            locationsArray = (defaults.objectForKey("lastLocations")) as! [String]
+        }
+        if defaults.stringForKey("city") != nil {
+            city = defaults.stringForKey("city")!
+        }
+        locationsPicker.selectRow(locationsArray.indexOf(city!)!, inComponent: 0, animated: true)
         setMapView()
     }
     
@@ -39,14 +47,31 @@ class SettingsController: UITableViewController, UITextFieldDelegate, UINavigati
         mapView.addAnnotation(annotation)
     }
     
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if saveButton === sender {
-            let input = locationTextField.text ?? ""
-            city = input.stringByReplacingOccurrencesOfString(" ", withString: "")
+            if lastUsed == false {
+                if locationTextField.text != "" {
+                    city = locationTextField.text!.stringByReplacingOccurrencesOfString(" ", withString: "")
+                }
+            }
+            if !locationsArray.contains(city!) && city != "" {
+                appendToLocationArray()
+            }
             defaults.setObject(city, forKey: "city")
             defaults.setInteger(amountOfDays, forKey: "amountOfDays")
             defaults.setBool(celsius, forKey: "celsius")
         }
+    }
+    
+    func appendToLocationArray() -> Void {
+        if locationsArray.count <= 4 {
+            locationsArray.append(city!)
+        } else {
+            locationsArray.removeFirst()
+            locationsArray.append(city!)
+        }
+        defaults.setObject(locationsArray, forKey: "lastLocations")
     }
     
     @IBAction func switchPressed(sender: AnyObject) {
@@ -74,6 +99,7 @@ class SettingsController: UITableViewController, UITextFieldDelegate, UINavigati
     
     func checkValidLocationName() {
         let text = locationTextField.text ?? ""
+        lastUsed = false
         saveButton.enabled = !text.isEmpty
     }
     
@@ -84,15 +110,23 @@ class SettingsController: UITableViewController, UITextFieldDelegate, UINavigati
     
     //PICKERVIEW: aantal dagen
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let amount = amountOfDaysArray[row]
-        if amount == 1 {
-           return String(amount) + " dag"
+        if(pickerView.tag == 2){
+            let amount = amountOfDaysArray[row]
+            if amount == 1 {
+                return String(amount) + " dag"
+            }
+            return String(amount) + " dagen"
+        } else {
+            return locationsArray[row]
         }
-        return String(amount) + " dagen"
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return amountOfDaysArray.count
+        if(pickerView.tag == 1){
+            return locationsArray.count
+        } else {
+            return amountOfDaysArray.count
+        }
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
@@ -101,7 +135,13 @@ class SettingsController: UITableViewController, UITextFieldDelegate, UINavigati
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        amountOfDays = row + 1
-        saveButton.enabled = true
+        if(pickerView.tag == 2) {
+            amountOfDays = row + 1
+            saveButton.enabled = true
+        } else {
+            city = locationsArray[row]
+            lastUsed = true
+            saveButton.enabled = true
+        }
     }
 }
