@@ -6,6 +6,7 @@ class DayViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var pressureLabel: UILabel!
     @IBOutlet weak var humidityLabel: UILabel!
+    @IBOutlet weak var windLabel: UILabel!
     var day: Day?
     var position: Int?
     
@@ -20,7 +21,8 @@ class DayViewController: UIViewController {
             temperatureLabel.text = String(day.temperature) + "°C"
             descriptionLabel.text = day.description
             pressureLabel.text = "Luchtdruk " + String(day.pressure) + " hpa"
-            humidityLabel.text = "Luchtvochtigheid " + String(day.humidity) + "%"
+            humidityLabel.text = "Luchtvochtigheid " + String(day.humidity) + " %"
+            windLabel.text = "Wind " + String(day.wind) + " km/h"
         }
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: day!.main)!)
     }

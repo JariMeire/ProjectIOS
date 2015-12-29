@@ -10,8 +10,9 @@ class Day{
     let location: Location
     let pressure: Int
     let humidity: Int
+    let wind: Int
     
-    init(city: String, name: String, temperature: Int, main: String, description: String, icon: String, location: Location, pressure: Int, humidity: Int){
+    init(city: String, name: String, temperature: Int, main: String, description: String, icon: String, location: Location, pressure: Int, humidity: Int, wind: Int){
         self.city = city
         self.name = name
         self.temperature = temperature
@@ -21,6 +22,7 @@ class Day{
         self.location = location
         self.pressure = pressure
         self.humidity = humidity
+        self.wind = wind
     }
 }
 var teller: Int = 0
@@ -37,6 +39,9 @@ extension Day{
         }
         guard let humidity = json["humidity"] as? Int else{
             throw Service.Error.MissingJsonProperty(name: "humidity")
+        }
+        guard let speed = json["speed"] as? Double else{
+            throw Service.Error.MissingJsonProperty(name: "speed")
         }
         guard let temp = json["temp"] as? NSDictionary else{
             throw Service.Error.MissingJsonProperty(name: "temp")
@@ -136,7 +141,7 @@ extension Day{
         let iconGeneral = String(icon.characters.dropLast())
         let location = Location(latitude: lat, longitude: lon)
         
-        self.init(city: city, name: dayName, temperature: temperature, main: main, description: weatherDescription, icon: iconGeneral, location: location, pressure: Int(pressure), humidity: humidity)
+        self.init(city: city, name: dayName, temperature: temperature, main: main, description: weatherDescription, icon: iconGeneral, location: location, pressure: Int(pressure), humidity: humidity, wind: Int(speed * 3.6))
         //teller += 1
     }
 }
