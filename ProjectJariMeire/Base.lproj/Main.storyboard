@@ -87,26 +87,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Fm-xR-df2">
-                                <rect key="frame" x="380" y="117" width="200" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VBU-cp-6tM">
-                                <rect key="frame" x="380" y="146" width="200" height="21"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1aN-KC-3B5">
+                                <rect key="frame" x="359" y="72" width="221" height="189"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VBU-cp-6tM">
+                                        <rect key="frame" x="0.0" y="0.0" width="221" height="105"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="90"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Fm-xR-df2">
+                                        <rect key="frame" x="0.0" y="105" width="221" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lSG-b6-Ndv">
+                                        <rect key="frame" x="0.0" y="141" width="221" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2s-03-cgm">
+                                        <rect key="frame" x="0.0" y="165" width="221" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="VBU-cp-6tM" firstAttribute="top" secondItem="8Fm-xR-df2" secondAttribute="bottom" constant="8" id="CYI-ob-AdI"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="8Fm-xR-df2" secondAttribute="trailing" id="PSr-Ni-zJQ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="VBU-cp-6tM" secondAttribute="trailing" id="mVJ-ou-dHB"/>
-                            <constraint firstItem="VBU-cp-6tM" firstAttribute="width" secondItem="8Fm-xR-df2" secondAttribute="width" id="tLe-09-ct4"/>
-                            <constraint firstItem="8Fm-xR-df2" firstAttribute="top" secondItem="Mqy-fp-4xf" secondAttribute="bottom" constant="53" id="uw4-hh-Zbf"/>
+                            <constraint firstItem="1aN-KC-3B5" firstAttribute="top" secondItem="Mqy-fp-4xf" secondAttribute="bottom" constant="8" id="cWO-JZ-AoN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1aN-KC-3B5" secondAttribute="trailing" id="sny-DL-ILJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="xK4-d8-rc6">
@@ -118,6 +132,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="descriptionLabel" destination="8Fm-xR-df2" id="r3H-Dj-foD"/>
+                        <outlet property="humidityLabel" destination="h2s-03-cgm" id="90j-SY-7Va"/>
+                        <outlet property="pressureLabel" destination="lSG-b6-Ndv" id="9nC-cs-pCF"/>
                         <outlet property="temperatureLabel" destination="VBU-cp-6tM" id="0GH-nR-bLi"/>
                     </connections>
                 </viewController>

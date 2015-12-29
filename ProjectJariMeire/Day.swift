@@ -8,8 +8,10 @@ class Day{
     let description: String
     let icon: String
     let location: Location
+    let pressure: Int
+    let humidity: Int
     
-    init(city: String, name: String, temperature: Int, main: String, description: String, icon: String, location: Location){
+    init(city: String, name: String, temperature: Int, main: String, description: String, icon: String, location: Location, pressure: Int, humidity: Int){
         self.city = city
         self.name = name
         self.temperature = temperature
@@ -17,6 +19,8 @@ class Day{
         self.description = description
         self.icon = icon
         self.location = location
+        self.pressure = pressure
+        self.humidity = humidity
     }
 }
 var teller: Int = 0
@@ -27,6 +31,12 @@ extension Day{
         }
         guard let weather = json["weather"] as? NSArray else{
             throw Service.Error.MissingJsonProperty(name: "weather")
+        }
+        guard let pressure = json["pressure"] as? Double else{
+            throw Service.Error.MissingJsonProperty(name: "pressure")
+        }
+        guard let humidity = json["humidity"] as? Int else{
+            throw Service.Error.MissingJsonProperty(name: "humidity")
         }
         guard let temp = json["temp"] as? NSDictionary else{
             throw Service.Error.MissingJsonProperty(name: "temp")
@@ -82,25 +92,25 @@ extension Day{
         func setDescription(description: String) -> String {
             switch description {
             case "light rain":
-                return "lichte regen";
+                return "Lichte regen";
             case "moderate rain":
-                return "af en toe buien";
+                return "Af en toe buien";
             case "heavy intensity rain":
-                return "zware regenval";
+                return "Zware regenval";
             case "sky is clear":
-                return "heldere hemel";
+                return "Heldere hemel";
             case "broken clouds":
-                return "bewolkt";
+                return "Bewolkt";
             case "overcast clouds":
-                return "zwaar bewolkt";
+                return "Zwaar bewolkt";
             case "few clouds":
-                return "afwisselend bewolkt";
+                return "Afwisselend bewolkt";
             case "scattered clouds":
-                return "af en toe bewolkt";
+                return "Af en toe bewolkt";
             case "light snow":
-                return "lichte sneeuwval";
+                return "Lichte sneeuwval";
             case "sneeuw":
-                return "sneeuwbuien";
+                return "Sneeuwbuien";
             default:
                 return description;
             }
@@ -126,7 +136,7 @@ extension Day{
         let iconGeneral = String(icon.characters.dropLast())
         let location = Location(latitude: lat, longitude: lon)
         
-        self.init(city: city, name: dayName, temperature: temperature, main: main, description: weatherDescription, icon: iconGeneral, location: location)
+        self.init(city: city, name: dayName, temperature: temperature, main: main, description: weatherDescription, icon: iconGeneral, location: location, pressure: Int(pressure), humidity: humidity)
         //teller += 1
     }
 }
