@@ -10,6 +10,7 @@ class DaysViewController: UITableViewController {
     let defaults = NSUserDefaults.standardUserDefaults()
     
     override func viewDidLoad() {
+        //controle of er instellingen van de user lokaal zijn opgeslaan
         if defaults.stringForKey(Constants.city) != nil {
             city = defaults.stringForKey(Constants.city)!
         }
@@ -18,6 +19,7 @@ class DaysViewController: UITableViewController {
         }
         tableView!.delegate = self
         tableView.backgroundView = UIImageView(image: UIImage(named: "OverviewBackground"))
+        //weerdata ophalen
         currentTask = Service.sharedService.createFetchTask(city, amountOfDays: amountOfDays) {
             [unowned self] result in switch result {
             case .Success(let days):
@@ -82,8 +84,9 @@ class DaysViewController: UITableViewController {
         }
     }
     
-    //overgaan naar detailview wanneer er op bijhorende tablecell geklikt wordt
+    //overgaan naar een ander scherm
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        //controle of men overgaat naar het detailscherm of niet
         if segue.identifier == "ShowDetail" {
             let dayViewController = segue.destinationViewController as! DayViewController
             if let selectedDayCell = sender as? DayTableViewCell {
