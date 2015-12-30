@@ -2,19 +2,19 @@ import UIKit
 
 class DaysViewController: UITableViewController {
     
-    let defaults = NSUserDefaults.standardUserDefaults()
-    var celsius: Bool = true
     var city: String = ""
     var amountOfDays: Int = 7
     var days: [Day] = []
     var currentTask: NSURLSessionTask?
+    var location: Location?
+    let defaults = NSUserDefaults.standardUserDefaults()
     
     override func viewDidLoad() {
-        if defaults.stringForKey("city") != nil {
-            city = defaults.stringForKey("city")!
+        if defaults.stringForKey(Constants.city) != nil {
+            city = defaults.stringForKey(Constants.city)!
         }
-        if defaults.integerForKey("amountOfDays") != 0 {
-            amountOfDays = defaults.integerForKey("amountOfDays")
+        if defaults.integerForKey(Constants.amountOfDays) != 0 {
+            amountOfDays = defaults.integerForKey(Constants.amountOfDays)
         }
         tableView!.delegate = self
         tableView.backgroundView = UIImageView(image: UIImage(named: "OverviewBackground"))
@@ -23,8 +23,7 @@ class DaysViewController: UITableViewController {
             case .Success(let days):
                 self.days = days
                 self.title = days[0].city
-                self.defaults.setDouble(days[0].location.latitude, forKey: "latitude")
-                self.defaults.setDouble(days[0].location.longitude, forKey: "longitude")
+                self.location = days[0].location
                 self.tableView.reloadData()
             case .Failure(let error):
                 print(error)
@@ -66,7 +65,7 @@ class DaysViewController: UITableViewController {
     
     //celsius of fahrenheit instellen adhv instelling user
     func setTemperatureLabel(temperature: Int, cell: DayTableViewCell) -> Void {
-        if defaults.boolForKey("celsius") == true {
+        if defaults.boolForKey(Constants.celsius) == true {
             cell.temperatureLabel.text = String(temperature) + "°C"
         } else {
             let fahrenheit = Int((Double(temperature) * 1.8) + 32)
@@ -74,7 +73,7 @@ class DaysViewController: UITableViewController {
         }
     }
     
-    //waarden nodig om data op te halen die de user heeft ingesteld bij de instellingen
+    //waarden nodig om de weerdata op te halen die de user heeft ingesteld bij de instellingen
     @IBAction func unwindToLocationLabel(sender: UIStoryboardSegue){
         if let sourceViewController = sender.sourceViewController as? SettingsController {
             city = sourceViewController.city!
@@ -97,6 +96,8 @@ class DaysViewController: UITableViewController {
             let navigation = segue.destinationViewController as! UINavigationController
             let settingsViewController =  navigation.topViewController as! SettingsController
             settingsViewController.amountOfDays = amountOfDays
+            settingsViewController.city = city
+            settingsViewController.location = location
         }
     }
 }

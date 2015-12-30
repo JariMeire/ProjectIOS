@@ -12,6 +12,7 @@ class SettingsController: UITableViewController, UITextFieldDelegate, UINavigati
     let defaults = NSUserDefaults.standardUserDefaults()
     var celsius = true
     var city: String?
+    var location: Location!
     var amountOfDays = 0
     var amountOfDaysArray = [1, 2, 3, 4, 5, 6, 7]
     var locationsArray = [""]
@@ -20,19 +21,16 @@ class SettingsController: UITableViewController, UITextFieldDelegate, UINavigati
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         locationTextField.delegate = self
+        //savebutton disablen zolang user niks wijzigt
         checkValidLocationName()
         amountOfDaysPicker.delegate = self
         amountOfDaysPicker.dataSource = self
-        if defaults.boolForKey("celsius") == false {
-            temperatureSwitch.on = defaults.boolForKey("celsius")
+        if defaults.boolForKey(Constants.celsius) == false {
+            temperatureSwitch.on = defaults.boolForKey(Constants.celsius)
         }
-        if defaults.objectForKey("lastLocations") != nil {
-            locationsArray = (defaults.objectForKey("lastLocations")) as! [String]
-        }
-        if defaults.stringForKey("city") != nil {
-            city = defaults.stringForKey("city")!
+        if defaults.objectForKey(Constants.lastUsedLocations) != nil {
+            locationsArray = (defaults.objectForKey(Constants.lastUsedLocations)) as! [String]
         }
         selectRowOfPickerViews()
         setMapView()
@@ -40,7 +38,7 @@ class SettingsController: UITableViewController, UITextFieldDelegate, UINavigati
     
     //de locatie op kaart weergeven
     func setMapView() -> Void {
-        let center = CLLocationCoordinate2D(latitude: defaults.doubleForKey("latitude"), longitude: defaults.doubleForKey("longitude"))
+        let center = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
         let visibleRegion = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         mapView.region = visibleRegion
         let annotation = MKPointAnnotation()
@@ -60,23 +58,23 @@ class SettingsController: UITableViewController, UITextFieldDelegate, UINavigati
             if !locationsArray.contains(city!) && city != "" {
                 appendToLocationArray()
             }
-            defaults.setObject(city, forKey: "city")
+            defaults.setObject(city, forKey: Constants.city)
             if(switchPressed == true){
-                defaults.setBool(celsius, forKey: "celsius")
+                defaults.setBool(celsius, forKey: Constants.celsius)
             }
-            defaults.setInteger(amountOfDays, forKey: "amountOfDays")
+            defaults.setInteger(amountOfDays, forKey: Constants.amountOfDays)
         }
     }
     
     //de 5 laatst gebruikte locaties worden opgeslagen
     func appendToLocationArray() -> Void {
         if locationsArray.count <= 4 {
-            locationsArray.append(city!)
+            locationsArray.insert(city!, atIndex: 0)
         } else {
-            locationsArray.removeFirst()
-            locationsArray.append(city!)
+            locationsArray.removeLast()
+            locationsArray.insert(city!, atIndex: 0)
         }
-        defaults.setObject(locationsArray, forKey: "lastLocations")
+        defaults.setObject(locationsArray, forKey: Constants.lastUsedLocations)
     }
     
     //celsius of fahrenheit
@@ -117,7 +115,7 @@ class SettingsController: UITableViewController, UITextFieldDelegate, UINavigati
     }
     
     
-    //PICKERVIEW: aantal dagen
+    //PICKERVIEWs
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if(pickerView.tag == 2){
             let amount = amountOfDaysArray[row]
@@ -140,7 +138,6 @@ class SettingsController: UITableViewController, UITextFieldDelegate, UINavigati
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        //hoeveel secties? We hebben maar 1 component
         return 1
     }
     
