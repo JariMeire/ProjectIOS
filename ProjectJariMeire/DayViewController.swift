@@ -24,7 +24,21 @@ class DayViewController: UIViewController {
             humidityLabel.text = "Luchtvochtigheid " + String(day.humidity) + " %"
             windLabel.text = "Wind " + String(day.wind) + " km/h"
         }
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: day!.main)!)
+        setBackground()
+    }
+    
+    //bij schermrotatie setbackground opnieuw uitvoeren met andere afmetingen
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        setBackground()
+    }
+    
+    //bijpassende achtergrondafbeelding mooi weergeven adhv schermgrootte
+    func setBackground() -> Void {
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: day!.main)?.drawInRect(self.view.bounds)
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        self.view.backgroundColor = UIColor(patternImage: image)
     }
     
     func setDayName(name: String, counter: Int) -> String {

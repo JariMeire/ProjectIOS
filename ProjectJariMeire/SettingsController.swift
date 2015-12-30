@@ -25,7 +25,6 @@ class SettingsController: UITableViewController, UITextFieldDelegate, UINavigati
         checkValidLocationName()
         amountOfDaysPicker.delegate = self
         amountOfDaysPicker.dataSource = self
-        amountOfDaysPicker.selectRow(amountOfDays - 1, inComponent: 0, animated: true)
         if defaults.boolForKey("celsius") == false {
             temperatureSwitch.on = defaults.boolForKey("celsius")
         }
@@ -35,7 +34,7 @@ class SettingsController: UITableViewController, UITextFieldDelegate, UINavigati
         if defaults.stringForKey("city") != nil {
             city = defaults.stringForKey("city")!
         }
-        locationsPicker.selectRow(locationsArray.indexOf(city!)!, inComponent: 0, animated: true)
+        selectRowOfPickerViews()
         setMapView()
     }
     
@@ -154,6 +153,16 @@ class SettingsController: UITableViewController, UITextFieldDelegate, UINavigati
             city = locationsArray[row]
             lastUsed = true
             saveButton.enabled = true
+        }
+    }
+    
+    //juiste rij selecteren van de pickerviews
+    func selectRowOfPickerViews() -> Void {
+        amountOfDaysPicker.selectRow(amountOfDays - 1, inComponent: 0, animated: true)
+        if city == nil {
+            locationsPicker.selectRow(1, inComponent: 0, animated: true)
+        } else {
+            locationsPicker.selectRow(locationsArray.indexOf(city!)!, inComponent: 0, animated: true)
         }
     }
 }
