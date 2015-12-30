@@ -10,8 +10,9 @@ Alsook wordt er een bijpassende achtergrond weergegeven van het weer op dat mome
 Men kan verscheidene instellingen aanpassen naargelang de persoonlijke keuze.
 Zo kan men uiteraard de gewenste locatie instellen. De ingestelde locatie kan men nadien bekijken op de kaart.
 De meest recent gebruikte locaties worden getoond in een lijst. Deze lijst kan maximaal 5 items bevatten.
-Wanneer de lijst reeds 5 items bevat en de gebruiker voegt een locatie toe die nog niet in de lijst staat, dan zal het laatste item uit de lijst verwijderd worden en het nieuwe item worden toegevoegd.
-Verder kan men ook nog kiezen van hoeveel dagen men de weersvoorspelling wil bekijken.
+Wanneer de lijst reeds 5 items bevat en de gebruiker voegt een locatie toe die nog niet in de lijst staat, dan zal het laatste item uit de lijst verwijderd worden en zal het nieuwe item worden toegevoegd.
+Een item selecteren uit deze lijst zorgt er uiteraard voor dat er gebruik gemaakt wordt van de geselecteerde locatie.
+Verder kan men ook nog kiezen hoeveel dagen men de weersvoorspelling wil bekijken.
 Ook de weergave van de temperatuur aanpassen (Celsius of Fahrenheit) behoort tot de mogelijkheden.
 Al de ingestelde waarden worden lokaal opgeslagen zodat wanneer men de app opnieuw opstart, er gebruik gemaakt wordt van de instellingen die de user het laatst heeft ingesteld.
 

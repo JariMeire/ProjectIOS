@@ -17,6 +17,7 @@ class DayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if let day = day {
+            //labels instellen
             navigationItem.title = setDayName(day.name, counter: position!)
             temperatureLabel.text = String(day.temperature) + "°C"
             descriptionLabel.text = day.description
